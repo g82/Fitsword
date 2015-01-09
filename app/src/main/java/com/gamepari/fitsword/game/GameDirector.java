@@ -7,17 +7,27 @@ import com.gamepari.fitsword.MainActivity;
  */
 public class GameDirector {
 
-    private static GameDirector singletoninstance;
+    private static GameDirector singleton;
 
     private MainActivity mainActivity;
 
+    private Player player;
+
+
+    private GameDirector() {
+    }
+
     public static GameDirector getInstance() {
 
-        if (singletoninstance == null) {
-            singletoninstance = new GameDirector();
+        if (singleton == null) {
+            singleton = new GameDirector();
         }
 
-        return singletoninstance;
+        return singleton;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public void setMainActivity(MainActivity mainActivity) {

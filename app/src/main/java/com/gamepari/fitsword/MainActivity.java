@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.gamepari.fitsword.game.GameDirector;
 import com.gamepari.fitsword.game.Mode;
 import com.gamepari.fitsword.provider.FitDataProvider;
 
@@ -17,14 +18,25 @@ public class MainActivity extends ActionBarActivity implements FitDataProvider.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getFragmentManager().beginTransaction().add(R.id.fragment_container, RestFragment.newInstance(null, null)).commit();
-
-        FitDataProvider fitDataProvider = new FitDataProvider(this);
-        fitDataProvider.execute();
+        //using Google Fit Api
+        new FitDataProvider(this).execute();
     }
 
+
+    /**
+     * FitDataProvider.OnDataProvideListener Callbacks.<br/>
+     * Adapting GoogleFit Data & Game File Data to GameDirector
+     *
+     * @param o return Object
+     */
     @Override
     public void onDataLoaded(Object o) {
+
+        //TODO game start
+        GameDirector gameDirector = GameDirector.getInstance();
+        gameDirector.setMainActivity(this);
+
+        gameDirector.changeMode(Mode.REST);
 
     }
 
