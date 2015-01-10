@@ -1,6 +1,9 @@
 package com.gamepari.fitsword.game;
 
 import com.gamepari.fitsword.MainActivity;
+import com.gamepari.fitsword.provider.FitData;
+
+import java.util.List;
 
 /**
  * Created by gamepari on 1/8/15.
@@ -11,10 +14,12 @@ public class GameDirector {
 
     private MainActivity mainActivity;
 
-    private Player player;
+    private Player mPlayer;
+    private List<FitData> listFitData;
 
 
     private GameDirector() {
+        mPlayer = new Player();
     }
 
     public static GameDirector getInstance() {
@@ -26,12 +31,20 @@ public class GameDirector {
         return singleton;
     }
 
-    public Player getPlayer() {
-        return player;
+    public void init(MainActivity mainActivity, List<FitData> fitDatas) {
+        this.mainActivity = mainActivity;
+        this.listFitData = fitDatas;
+
+        int sumOfsteps = 0;
+        for (FitData fit : listFitData) {
+            sumOfsteps += fit.getValue();
+        }
+
+        getPlayer().setAvailableSteps(sumOfsteps);
     }
 
-    public void setMainActivity(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
+    public Player getPlayer() {
+        return mPlayer;
     }
 
     public void changeMode(Mode mode) {

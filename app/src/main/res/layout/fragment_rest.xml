@@ -13,15 +13,17 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_availsteps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current FootStep"
+            android:text="Available Step"
             android:textSize="24sp" />
 
         <TextView
+            android:id="@+id/tv_usedsteps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total FootStep"
+            android:text="Used Step"
             android:textSize="24sp" />
 
     </LinearLayout>

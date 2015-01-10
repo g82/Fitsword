@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.gamepari.fitsword.game.GameDirector;
 import com.gamepari.fitsword.game.Mode;
@@ -60,8 +61,11 @@ public class RestFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.btn_upgrade).setOnClickListener(this);
         view.findViewById(R.id.btn_fight).setOnClickListener(this);
 
+
         Player player = GameDirector.getInstance().getPlayer();
-        //TODO setPlayerData to
+
+        TextView tv_availSteps = (TextView) view.findViewById(R.id.tv_availsteps);
+        tv_availSteps.setText("Available Step : " + String.valueOf(player.getAvailableSteps()));
 
         return view;
     }
